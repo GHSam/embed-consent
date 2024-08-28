@@ -341,6 +341,10 @@ function consent_template($provider_name, $block_content)
 	$html .= '<template>' . esc_html($block_content) . '</template>';
 	$html .= '</div>';
 
+    if (has_filter("embed_consent_consent_template")) {
+        return apply_filters("embed_consent_consent_template", $theme_classes, $provider_name, $heading, $notice, $policies, $checkbox, $block_content);
+    }
+
 	return $html;
 }
 
