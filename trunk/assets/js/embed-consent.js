@@ -45,7 +45,6 @@ document.querySelectorAll(".embed-consent").forEach((node) => {
           "[data-embed-consent-provider=" + name + "].embed-consent"
         )
         .forEach((node) => {
-          console.log(node);
           const html = node.querySelector("template").content.textContent;
 
           node.replaceWith(
