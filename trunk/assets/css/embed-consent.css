@@ -1,0 +1,126 @@
+/* These variables are scoped to .embed-consent only so should not cause issues
+   with conflicts as they will be replaced only in this scope and nowhere else */
+.wp-block-embed div.embed-consent {
+  color-scheme: light;
+  --background: #eee;
+  --foreground: #111;
+  --button-border: #444;
+  --button-focus: #ddd;
+  --button-active: #ccc;
+}
+.wp-block-embed div.embed-consent.embed-consent-dark {
+  color-scheme: dark;
+  --background: #222;
+  --foreground: #e7e7e7;
+  --button-border: #ccc;
+  --button-focus: #3d3d3d;
+  --button-active: #333;
+}
+
+@media (prefers-color-scheme: light) {
+  .wp-block-embed div.embed-consent.embed-consent-auto {
+    color-scheme: light;
+    --background: #eee;
+    --foreground: #111;
+    --button-border: #444;
+    --button-focus: #ddd;
+    --button-active: #ccc;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .wp-block-embed div.embed-consent.embed-consent-auto {
+    color-scheme: dark;
+    --background: #222;
+    --foreground: #e7e7e7;
+    --button-border: #ccc;
+    --button-focus: #3d3d3d;
+    --button-active: #333;
+  }
+}
+
+.wp-block-embed div.embed-consent {
+  background: var(--background);
+  color: var(--foreground);
+  max-width: 100%;
+  overflow: hidden;
+}
+.wp-block-embed div.embed-consent div > * {
+  max-width: var(--wp--style--global--content-size, 40em);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1em;
+}
+.wp-block-embed div.embed-consent div > .embed-consent-heading {
+  font-weight: bold;
+  font-size: 1.25em;
+  max-width: var(--wp--style--global--content-size, 32em);
+  margin-top: 0;
+  padding-top: 0.8em;
+}
+.wp-block-embed div.embed-consent div > :last-child {
+  padding-bottom: 1em;
+  margin-bottom: 0;
+}
+
+.wp-block-embed div.embed-consent a {
+  color: inherit;
+  text-decoration: underline;
+}
+.wp-block-embed div.embed-consent a:hover {
+  text-decoration: none;
+}
+
+.wp-block-embed div.embed-consent button {
+  background: transparent;
+  border: 2px solid var(--button-border);
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  color: inherit;
+}
+.wp-block-embed div.embed-consent button:hover,
+.wp-block-embed div.embed-consent button:focus {
+  background: var(--button-focus);
+}
+.wp-block-embed div.embed-consent button:active {
+  background: var(--button-active);
+}
+
+.wp-block-embed div.embed-consent label {
+  display: flex;
+  gap: 0.25em;
+}
+
+/* Disable the WP aspect ratio when embedding a message which is done by setting
+   padding on the before pesudo element. */
+.wp-block-embed.wp-has-aspect-ratio :has(div.embed-consent):before {
+  display: none;
+}
+/* Handle all built in WP aspect ratios by setting ratio on the div that
+   contains the consent message.
+
+   If the message is smaller, this div fill the parent acting as a placeholder.
+   If the message is larger, it will overflow this div and as the parent is set
+   to contain the overflow (overflow:hidden) it will still look fine */
+.wp-embed-responsive .wp-embed-aspect-21-9 div.embed-consent > div {
+  aspect-ratio: 21/9;
+}
+.wp-embed-responsive .wp-embed-aspect-18-9 div.embed-consent > div {
+  aspect-ratio: 18/9;
+}
+.wp-embed-responsive .wp-embed-aspect-16-9 div.embed-consent > div {
+  aspect-ratio: 16/9;
+}
+.wp-embed-responsive .wp-embed-aspect-4-3 div.embed-consent > div {
+  aspect-ratio: 4/3;
+}
+.wp-embed-responsive .wp-embed-aspect-1-1 div.embed-consent > div {
+  aspect-ratio: 1/1;
+}
+.wp-embed-responsive .wp-embed-aspect-9-16 div.embed-consent > div {
+  aspect-ratio: 9/16;
+}
+.wp-embed-responsive .wp-embed-aspect-1-2 div.embed-consent > div {
+  aspect-ratio: 1/2;
+}

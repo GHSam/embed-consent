@@ -1,0 +1,8 @@
+.dev/
+.dev-old/
+settings.json
+node_modules/
+.svn*
+tags/
+trunk/assets/js/*.min.js
+trunk/assets/css/*.min.css
