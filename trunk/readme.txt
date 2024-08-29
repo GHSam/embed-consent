@@ -4,7 +4,7 @@ Tags: oembed, embed, consent, privacy, gdpr
 Requires at least: 6.1.1
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License:  GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,7 +96,10 @@ To allow users to opt-in to always loading a provider:
 4. Dark theme
 
 == Changelog ==
+= 1.1.0 =
+* Add a filter for the consent template `embed_consent_consent_template` which allows replacing the embed template.
+  \- Thanks to @tkcknost
 = 1.0.1 =
-Fix missing light / dark theme example images
+* Fix missing light / dark theme example images
 = 1.0.0 =
-Initial release
+* Initial release
