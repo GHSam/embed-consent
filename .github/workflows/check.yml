@@ -14,7 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Rename plugin directory
+        run: |
+          mv ./trunk ${{ runner.temp }}/embed-consent
+
       - name: Run plugin check
         uses: wordpress/plugin-check-action@v1
         with:
-          build-dir: "./trunk"
+          build-dir: ${{ runner.temp }}/embed-consent
