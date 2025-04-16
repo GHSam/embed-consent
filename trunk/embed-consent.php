@@ -23,153 +23,156 @@ define('EmbedConsent\VERSION', '1.0.0');
 define('EmbedConsent\SETTINGS_SLUG', 'embed-consent');
 define('EmbedConsent\EMBED_TAG',  '<!-- embed-consent -->');
 
-/**
- * Names and polices of each provider
- * 
- * Providers will always have a name and privacy_url but cookies_url is optional
- *
- * @var array<string, array{name: string, privacy_url: string, cookies_url?: string}>
- */
-define('EmbedConsent\PROVIDERS_INFO', [
-	'youtube' => [
-		'name' => 'YouTube',
-		'privacy_url' => __('https://policies.google.com/privacy', 'embed-consent'),
-		'cookies_url' => __('https://policies.google.com/technologies/cookies', 'embed-consent'),
-	],
-	'vimeo' => [
-		'name' => 'Vimeo',
-		'privacy_url' => __('https://vimeo.com/privacy', 'embed-consent'),
-		'cookies_url' => __('https://vimeo.com/cookie_policy', 'embed-consent'),
-	],
-	'wordpress-tv' => [
-		'name' => 'WordPress.tv',
-		'privacy_url' => __('https://wordpress.org/about/privacy/', 'embed-consent'),
-		'cookies_url' => __('https://wordpress.org/about/privacy/cookies/', 'embed-consent'),
-	],
-	'tiktok' => [
-		'name' => 'TikTok',
-		'privacy_url' => __('https://www.tiktok.com/legal/privacy-policy-row', 'embed-consent'),
-		'cookies_url' => __('https://www.tiktok.com/legal/cookie-policy', 'embed-consent'),
-	],
-	'imgur' => [
-		'name' => 'Imgur',
-		'privacy_url' => __('https://imgur.com/privacy', 'embed-consent'),
-	],
-	'pocket-casts' => [
-		'name' => 'Pocket Casts',
-		'privacy_url' => __('https://support.pocketcasts.com/knowledge-base/privacy-policy/', 'embed-consent'),
-	],
-	'soundcloud' => [
-		'name' => 'SoundCloud',
-		'privacy_url' => __('https://soundcloud.com/pages/privacy', 'embed-consent'),
-		'cookies_url' => __('https://soundcloud.com/pages/cookies', 'embed-consent'),
-	],
-	'spotify' => [
-		'name' => 'Spotify',
-		'privacy_url' => __('https://www.spotify.com/legal/privacy-policy/', 'embed-consent'),
-		'cookies_url' => __('https://www.spotify.com/legal/cookies-policy/', 'embed-consent'),
-	],
-	'flickr' => [
-		'name' => 'Flickr',
-		'privacy_url' => __('https://www.flickr.com/help/privacy', 'embed-consent'),
-		'cookies_url' => __('https://www.flickr.com/help/cookies', 'embed-consent'),
-	],
-	'twitter' => [
-		'name' => 'Twitter',
-		'privacy_url' => __('https://twitter.com/en/privacy', 'embed-consent'),
-		'cookies_url' => __('https://help.twitter.com/en/rules-and-policies/twitter-cookies', 'embed-consent'),
-	],
-	'dailymotion' => [
-		'name' => 'DailyMotion',
-		'privacy_url' => __('https://legal.dailymotion.com/en/privacy-policy/', 'embed-consent'),
-		'cookies_url' => __('https://legal.dailymotion.com/en/cookie-policy/', 'embed-consent'),
-	],
-	'issuu' => [
-		'name' => 'Issuu',
-		'privacy_url' => __('https://issuu.com/legal/privacy', 'embed-consent'),
-		'cookies_url' => __('https://issuu.com/legal/cookies', 'embed-consent'),
-	],
-	'mixcloud' => [
-		'name' => 'Mixcloud',
-		'privacy_url' => __('https://www.mixcloud.com/privacy/', 'embed-consent'),
-	],
-	'reddit' => [
-		'name' => 'Reddit',
-		'privacy_url' => __('https://www.reddit.com/policies/privacy-policy', 'embed-consent'),
-		'cookies_url' => __('https://www.reddit.com/policies/cookies', 'embed-consent'),
-	],
-	'reverbnation' => [
-		'name' => 'ReverbNation',
-		'privacy_url' => __('https://www.reverbnation.com/privacy', 'embed-consent'),
-	],
-	'scribd' => [
-		'name' => 'Scribd',
-		'privacy_url' => __('https://support.scribd.com/hc/en-us/articles/210129366-Global-Privacy-Policy', 'embed-consent'),
-	],
-	'slideshare' => [
-		'name' => 'Slideshare',
-		'privacy_url' => __('https://support.scribd.com/hc/en/articles/210129366-Privacy-policy', 'embed-consent'),
-	],
-	'speaker-deck' => [
-		'name' => 'Speaker Deck',
-		'privacy_url' => __('https://speakerdeck.com/privacy', 'embed-consent'),
-	],
-	'ted' => [
-		'name' => 'TED',
-		'privacy_url' => __('https://www.ted.com/about/our-organization/our-policies-terms/privacy-policy', 'embed-consent'),
-	],
-	'tumblr' => [
-		'name' => 'Tumblr',
-		'privacy_url' => __('https://www.tumblr.com/privacy/en', 'embed-consent'),
-	],
-	'amazon' => [
-		'name' => 'Amazon',
-		'privacy_url' => __('https://www.amazon.com/gp/help/customer/display.html?nodeId=468496', 'embed-consent'),
-		'cookies_url' => __('https://www.amazon.com/cookies', 'embed-consent'),
-	],
-	'pinterest' => [
-		'name' => 'Pinterest',
-		'privacy_url' => __('https://policy.pinterest.com/privacy-policy', 'embed-consent'),
-	],
-	'wolfram-cloud' => [
-		'name' => 'Wolfram',
-		'privacy_url' => __('https://www.wolfram.com/legal/privacy/wolfram/', 'embed-consent'),
-	],
-	'videopress' => [
-		'name' => 'VideoPress',
-		'privacy_url' => __('https://automattic.com/privacy/', 'embed-consent'),
-	],
+// Define URLs after plugin init so translations can be loaded first
+add_action('init', function () {
+	/**
+	 * Names and polices of each provider
+	 * 
+	 * Providers will always have a name and privacy_url but cookies_url is optional
+	 *
+	 * @var array<string, array{name: string, privacy_url: string, cookies_url?: string}>
+	 */
+	define('EmbedConsent\PROVIDERS_INFO', [
+		'youtube' => [
+			'name' => 'YouTube',
+			'privacy_url' => __('https://policies.google.com/privacy', 'embed-consent'),
+			'cookies_url' => __('https://policies.google.com/technologies/cookies', 'embed-consent'),
+		],
+		'vimeo' => [
+			'name' => 'Vimeo',
+			'privacy_url' => __('https://vimeo.com/privacy', 'embed-consent'),
+			'cookies_url' => __('https://vimeo.com/cookie_policy', 'embed-consent'),
+		],
+		'wordpress-tv' => [
+			'name' => 'WordPress.tv',
+			'privacy_url' => __('https://wordpress.org/about/privacy/', 'embed-consent'),
+			'cookies_url' => __('https://wordpress.org/about/privacy/cookies/', 'embed-consent'),
+		],
+		'tiktok' => [
+			'name' => 'TikTok',
+			'privacy_url' => __('https://www.tiktok.com/legal/privacy-policy-row', 'embed-consent'),
+			'cookies_url' => __('https://www.tiktok.com/legal/cookie-policy', 'embed-consent'),
+		],
+		'imgur' => [
+			'name' => 'Imgur',
+			'privacy_url' => __('https://imgur.com/privacy', 'embed-consent'),
+		],
+		'pocket-casts' => [
+			'name' => 'Pocket Casts',
+			'privacy_url' => __('https://support.pocketcasts.com/knowledge-base/privacy-policy/', 'embed-consent'),
+		],
+		'soundcloud' => [
+			'name' => 'SoundCloud',
+			'privacy_url' => __('https://soundcloud.com/pages/privacy', 'embed-consent'),
+			'cookies_url' => __('https://soundcloud.com/pages/cookies', 'embed-consent'),
+		],
+		'spotify' => [
+			'name' => 'Spotify',
+			'privacy_url' => __('https://www.spotify.com/legal/privacy-policy/', 'embed-consent'),
+			'cookies_url' => __('https://www.spotify.com/legal/cookies-policy/', 'embed-consent'),
+		],
+		'flickr' => [
+			'name' => 'Flickr',
+			'privacy_url' => __('https://www.flickr.com/help/privacy', 'embed-consent'),
+			'cookies_url' => __('https://www.flickr.com/help/cookies', 'embed-consent'),
+		],
+		'twitter' => [
+			'name' => 'Twitter',
+			'privacy_url' => __('https://twitter.com/en/privacy', 'embed-consent'),
+			'cookies_url' => __('https://help.twitter.com/en/rules-and-policies/twitter-cookies', 'embed-consent'),
+		],
+		'dailymotion' => [
+			'name' => 'DailyMotion',
+			'privacy_url' => __('https://legal.dailymotion.com/en/privacy-policy/', 'embed-consent'),
+			'cookies_url' => __('https://legal.dailymotion.com/en/cookie-policy/', 'embed-consent'),
+		],
+		'issuu' => [
+			'name' => 'Issuu',
+			'privacy_url' => __('https://issuu.com/legal/privacy', 'embed-consent'),
+			'cookies_url' => __('https://issuu.com/legal/cookies', 'embed-consent'),
+		],
+		'mixcloud' => [
+			'name' => 'Mixcloud',
+			'privacy_url' => __('https://www.mixcloud.com/privacy/', 'embed-consent'),
+		],
+		'reddit' => [
+			'name' => 'Reddit',
+			'privacy_url' => __('https://www.reddit.com/policies/privacy-policy', 'embed-consent'),
+			'cookies_url' => __('https://www.reddit.com/policies/cookies', 'embed-consent'),
+		],
+		'reverbnation' => [
+			'name' => 'ReverbNation',
+			'privacy_url' => __('https://www.reverbnation.com/privacy', 'embed-consent'),
+		],
+		'scribd' => [
+			'name' => 'Scribd',
+			'privacy_url' => __('https://support.scribd.com/hc/en-us/articles/210129366-Global-Privacy-Policy', 'embed-consent'),
+		],
+		'slideshare' => [
+			'name' => 'Slideshare',
+			'privacy_url' => __('https://support.scribd.com/hc/en/articles/210129366-Privacy-policy', 'embed-consent'),
+		],
+		'speaker-deck' => [
+			'name' => 'Speaker Deck',
+			'privacy_url' => __('https://speakerdeck.com/privacy', 'embed-consent'),
+		],
+		'ted' => [
+			'name' => 'TED',
+			'privacy_url' => __('https://www.ted.com/about/our-organization/our-policies-terms/privacy-policy', 'embed-consent'),
+		],
+		'tumblr' => [
+			'name' => 'Tumblr',
+			'privacy_url' => __('https://www.tumblr.com/privacy/en', 'embed-consent'),
+		],
+		'amazon' => [
+			'name' => 'Amazon',
+			'privacy_url' => __('https://www.amazon.com/gp/help/customer/display.html?nodeId=468496', 'embed-consent'),
+			'cookies_url' => __('https://www.amazon.com/cookies', 'embed-consent'),
+		],
+		'pinterest' => [
+			'name' => 'Pinterest',
+			'privacy_url' => __('https://policy.pinterest.com/privacy-policy', 'embed-consent'),
+		],
+		'wolfram-cloud' => [
+			'name' => 'Wolfram',
+			'privacy_url' => __('https://www.wolfram.com/legal/privacy/wolfram/', 'embed-consent'),
+		],
+		'videopress' => [
+			'name' => 'VideoPress',
+			'privacy_url' => __('https://automattic.com/privacy/', 'embed-consent'),
+		],
 
-	// The following have not been tested as they either require an account
-	// or the embed block couldn't be made to work with them.
-	// Testing mostly checks the provider name is correct so, as long as the
-	// name is right, they should work. 
-	'animoto' => [
-		'name' => 'Animoto',
-		'privacy_url' => __('https://animoto.com/legal/privacy_policy', 'embed-consent'),
-	],
-	'cloudup' => [
-		'name' => 'Cloudup',
-		'privacy_url' => __('https://automattic.com/privacy/', 'embed-consent'),
-	],
-	'crowdsignal' => [
-		'name' => 'Crowdsignal',
-		'privacy_url' => __('https://automattic.com/privacy/', 'embed-consent'),
-	],
-	'kickstarter' => [
-		'name' => 'Kickstarter',
-		'privacy_url' => __('https://www.kickstarter.com/privacy', 'embed-consent'),
-		'cookies_url' => __('https://www.kickstarter.com/cookies', 'embed-consent'),
-	],
-	'screencast' => [
-		'name' => 'Screencast',
-		'privacy_url' => __('https://www.techsmith.com/privacy-policy.html', 'embed-consent'),
-	],
-	'smugmug' => [
-		'name' => 'SmugMug',
-		'privacy_url' => __('https://www.smugmug.com/about/privacy', 'embed-consent'),
-	],
-]);
+		// The following have not been tested as they either require an account
+		// or the embed block couldn't be made to work with them.
+		// Testing mostly checks the provider name is correct so, as long as the
+		// name is right, they should work. 
+		'animoto' => [
+			'name' => 'Animoto',
+			'privacy_url' => __('https://animoto.com/legal/privacy_policy', 'embed-consent'),
+		],
+		'cloudup' => [
+			'name' => 'Cloudup',
+			'privacy_url' => __('https://automattic.com/privacy/', 'embed-consent'),
+		],
+		'crowdsignal' => [
+			'name' => 'Crowdsignal',
+			'privacy_url' => __('https://automattic.com/privacy/', 'embed-consent'),
+		],
+		'kickstarter' => [
+			'name' => 'Kickstarter',
+			'privacy_url' => __('https://www.kickstarter.com/privacy', 'embed-consent'),
+			'cookies_url' => __('https://www.kickstarter.com/cookies', 'embed-consent'),
+		],
+		'screencast' => [
+			'name' => 'Screencast',
+			'privacy_url' => __('https://www.techsmith.com/privacy-policy.html', 'embed-consent'),
+		],
+		'smugmug' => [
+			'name' => 'SmugMug',
+			'privacy_url' => __('https://www.smugmug.com/about/privacy', 'embed-consent'),
+		],
+	]);
+});
 
 /**
  * Returns the contents of a plugin file
