@@ -2,7 +2,7 @@
 /*
  * Plugin Name:       Embed Consent
  * Description:       Replaces embed blocks with a confirmation to ask for consent before loading third-party resources.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.1.1
  * Requires PHP:      7.4
  * Author:            Sam Clarke
