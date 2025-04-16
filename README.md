@@ -10,5 +10,5 @@ To build the minified versions of the CSS and JS files, run the following from t
 
 ```js
 npm ci
-npm build
+npm run build
 ```
