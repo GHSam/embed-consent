@@ -8,6 +8,6 @@
     "dev": "esbuild assets/js/embed-consent.js assets/js/embed-consent-opt-out.js assets/css/embed-consent.css --watch --minify --target=es6 --out-extension:.js=.min.js --out-extension:.css=.min.css --outdir=assets"
   },
   "devDependencies": {
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.25.2"
   }
 }
