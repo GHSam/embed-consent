@@ -2,7 +2,7 @@
 Contributors: wpsamclarke
 Tags: oembed, embed, consent, privacy, gdpr
 Requires at least: 6.1.1
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 1.1.0
 License:  GPL-2.0-or-later
@@ -96,6 +96,8 @@ To allow users to opt-in to always loading a provider:
 4. Dark theme
 
 == Changelog ==
+= 1.1.1 =
+* Fix issue with URLs being set before translations are loaded
 = 1.1.0 =
 * Add a filter for the consent template `embed_consent_consent_template` which allows replacing the embed template.
   \- Thanks to @tkcknost
